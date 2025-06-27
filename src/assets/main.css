@@ -1,0 +1,49 @@
+@import './base.css';
+
+/* 組件樣式 */
+@import './css/navigationbar.css';
+@import './css/home-content.css';
+@import './css/home-view.css';
+@import './css/restaurant-view.css';
+@import './css/reservationform.css';
+@import './css/theme-overrides.css';
+
+/* 除錯樣式（開發時使用） */
+@import './css/debug.css';
+
+#app {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0;
+  font-weight: normal;
+  padding-bottom: 122px;
+}
+
+a,
+.green {
+  text-decoration: none;
+  color: hsla(160, 100%, 37%, 1);
+  transition: 0.4s;
+  padding: 3px;
+}
+
+@media (hover: hover) {
+  a:hover {
+    background-color: hsla(160, 100%, 37%, 0.2);
+  }
+}
+
+@media (min-width: 1024px) {
+  body {
+    display: flex;
+    place-items: center;
+  }
+
+  #app {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0;
+    font-weight: normal;
+    padding-bottom: 122px;
+  }
+}

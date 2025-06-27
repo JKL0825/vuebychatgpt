@@ -1,0 +1,16 @@
+/* theme-overrides.css：橘白配色 */
+:root {
+    --p-primary-color: #ff6c00;
+    --p-primary-color-text: #ffffff;
+    --p-primary-color-hover: #e65a00;
+
+    --p-highlight-bg: #fff4e6;
+    --p-highlight-text-color: #ff6c00;
+
+    --p-surface-ground: #ffffff;
+    --p-surface-card: #f8f8f8;
+    --p-border-color: #e0e0e0;
+    --p-text-color: #2e2e2e;
+
+    --p-focus-ring: 0 0 0 0.2rem rgba(255, 108, 0, 0.3);
+}

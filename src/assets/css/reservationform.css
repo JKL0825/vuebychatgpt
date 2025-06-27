@@ -1,0 +1,134 @@
+.reservation-form {
+    max-width: 900px;
+    margin: 0 auto;
+    font-family: "GT America", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    color: #222;
+    background: #fff;
+}
+
+.reservation-form label {
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+    display: block;
+}
+
+.reservation-form .main-color {
+    color: #ff6c00;
+}
+
+.reservation-form .section-title {
+    font-size: 1.1rem;
+    color: #ff6c00;
+    margin: 2rem 0 1rem 0;
+}
+
+.reservation-form .select,
+.reservation-form .input,
+.reservation-form .date-picker {
+    border-radius: 6px;
+    border: 1px solid #ddd;
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    margin-right: 1rem;
+}
+
+.reservation-form .time-btn {
+    border: 1px solid #ff6c00;
+    background: #fff;
+    color: #ff6c00;
+    border-radius: 6px;
+    padding: 0.5rem 1.5rem;
+    margin: 0.5rem 0.5rem 0 0;
+    cursor: pointer;
+    transition: background 0.2s, color 0.2s;
+}
+
+.reservation-form .time-btn.selected,
+.reservation-form .time-btn:hover {
+    background: #ff6c00;
+    color: #fff;
+}
+
+.reservation-form .calendar {
+    margin: 1.5rem 0;
+}
+
+.reservation-form .notice {
+    color: #ff6c00;
+    font-size: 0.95rem;
+    margin: 1rem 0;
+}
+
+.reservation-form .footer-bar {
+    background: #faf7f2;
+    border-top: 1px solid #eee;
+    padding: 1rem 2rem;
+    color: #222;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 1rem;
+}
+
+.reservation-form .form-label {
+    color: #222;
+    font-size: 1rem;
+    margin-bottom: 0.25rem;
+}
+
+.reservation-form .form-control {
+    border-radius: 6px;
+    border: 1px solid #ddd;
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+}
+
+.reservation-form .p-button {
+    background: #ff6c00;
+    border: none;
+    color: #fff;
+    border-radius: 6px;
+    font-weight: 600;
+    font-size: 1rem;
+    padding: 0.75rem 2rem;
+    margin-top: 1rem;
+    transition: background 0.2s;
+}
+
+.reservation-form .p-button:hover {
+    background: #ff8c1a;
+}
+
+.guest-date-row {
+    display: flex;
+    gap: 2rem;
+    margin-bottom: 1.5rem;
+}
+
+/* 訂位人數日期排版 */
+.guest-col,
+.date-col {
+    flex: 1 1 0;
+    min-width: 250px;
+}
+
+.guest-select-group {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 0.5rem;
+}
+
+.guest-tip {
+    font-size: 0.95rem;
+    color: #888;
+    margin-top: 0.25rem;
+}
+
+.guest-tip .main-color {
+    color: #ff6c00;
+    text-decoration: underline;
+    margin-left: 0.25rem;
+}
+
+/* 時間選擇器 */

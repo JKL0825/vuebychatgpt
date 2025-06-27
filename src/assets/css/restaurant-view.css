@@ -1,0 +1,122 @@
+/* RestaurantView 組件樣式 */
+
+/* RestaurantView 外層包裝器 */
+.restaurant-view-wrapper {
+    min-height: 100vh;
+    padding-top: 80px;
+    /* 導航欄高度(60px) + 安全間距(20px) */
+    background: #f8f9fa;
+    /* 淺灰背景，更好地區分區域 */
+}
+
+.text-orange {
+    color: #ff6c00;
+}
+
+/* 餐廳容器 */
+.restaurant-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    padding-top: 0;
+    /* 外層包裝器已經處理了頂部間距 */
+    background: #fff;
+    /* 白色背景 */
+    border-radius: 12px;
+    /* 圓角 */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    /* 輕微陰影 */
+    margin-bottom: 40px;
+    /* 底部間距 */
+}
+
+.reservation-banner {
+    box-sizing: border-box;
+    display: block;
+    position: relative;
+    width: 100%;
+    margin: 0 auto 2rem auto;
+    overflow: hidden;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+
+    /* 清除不必要的設定 */
+    border: none;
+
+    /* 禁用 tap highlight、平滑字體 */
+    -webkit-tap-highlight-color: transparent;
+    -webkit-font-smoothing: antialiased;
+
+    /* 動畫轉場 */
+    transition: all 0.3s ease;
+}
+
+.reservation-banner:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.15);
+}
+
+.banner-img {
+    width: 100%;
+    height: 456px;
+    display: block;
+    object-fit: cover;
+    object-position: center;
+    transition: transform 0.3s ease;
+    margin-top: 200px;
+}
+
+.banner-img:hover {
+    transform: scale(1.02);
+}
+
+/* 餐廳資訊區域 */
+.restaurant-info {
+    margin-bottom: 2rem;
+}
+
+.restaurant-menu {
+    margin-bottom: 2rem;
+}
+
+.restaurant-map {
+    margin-bottom: 2rem;
+}
+
+/* 響應式設計 */
+@media (max-width: 768px) {
+    .restaurant-view-wrapper {
+        padding-top: 80px;
+        /* 保持相同的頂部間距 */
+        background: #fff;
+        /* 在小螢幕上使用白色背景 */
+    }
+
+    .restaurant-container {
+        padding: 15px;
+        padding-top: 0;
+        margin: 10px;
+        border-radius: 8px;
+    }
+
+    .banner-img {
+        height: 300px;
+    }
+}
+
+@media (max-width: 480px) {
+    .restaurant-view-wrapper {
+        padding-top: 80px;
+    }
+
+    .restaurant-container {
+        padding: 10px;
+        padding-top: 0;
+        margin: 5px;
+        border-radius: 6px;
+    }
+
+    .banner-img {
+        height: 250px;
+    }
+}
