@@ -18,7 +18,7 @@
 
         <!-- 訂位表單 -->
         <div ref="reservationSection">
-            <ReservationForm />
+            <ReservationForm :restaurantId="restaurant.id" />
         </div>
 
         <!-- 地圖 -->

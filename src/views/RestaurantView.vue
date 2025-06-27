@@ -14,8 +14,8 @@ const route = useRoute()
 const restaurantData = ref({})
 
 onMounted(() => {
-    // 從路由參數獲取餐廳 ID，如果沒有就使用預設的 'plants'
-    const restaurantId = route.params.id || 'plants'
+    // 從路由參數獲取餐廳 ID，如果沒有就使用預設的 1 (Plants)
+    const restaurantId = parseInt(route.params.id) || 1
     restaurantData.value = getRestaurantById(restaurantId)
 })
 </script>

@@ -101,9 +101,136 @@
 }
 
 .guest-date-row {
+    margin-bottom: 1rem;
+}
+
+.guest-col {
+    padding-right: 0;
+}
+
+.guest-select-group {
     display: flex;
-    gap: 2rem;
-    margin-bottom: 1.5rem;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+.date-col {
+    margin-left: 1rem;
+}
+
+.primary-btn {
+    background-color: #e86d00;
+    border-color: #e86d00;
+    color: white;
+    padding: 0.75rem 2rem;
+    font-size: 1.1rem;
+    border-radius: 5px;
+    transition: all 0.2s ease;
+}
+
+.primary-btn:hover {
+    background-color: #d45e00;
+    border-color: #d45e00;
+    transform: translateY(-1px);
+}
+
+.main-color {
+    color: #e86d00;
+    text-decoration: none;
+}
+
+.main-color:hover {
+    color: #d45e00;
+    text-decoration: underline;
+}
+
+.text-orange {
+    color: #e86d00;
+}
+
+/* DatePicker 自定義樣式 */
+.p-datepicker {
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.p-datepicker-header {
+    background-color: #e86d00;
+    color: white;
+    border-radius: 8px 8px 0 0;
+}
+
+.p-datepicker-prev,
+.p-datepicker-next {
+    color: white;
+}
+
+.p-datepicker-prev:hover,
+.p-datepicker-next:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.p-datepicker-title {
+    color: white;
+}
+
+/* 可用日期樣式 */
+.p-datepicker-calendar td span:not(.p-disabled) {
+    background-color: #f8f9fa;
+    color: #333;
+    border: 1px solid #e9ecef;
+}
+
+.p-datepicker-calendar td span:not(.p-disabled):hover {
+    background-color: #e86d00;
+    color: white;
+}
+
+/* 不可選擇日期樣式（月份外的日期等） */
+.p-datepicker-calendar td span.p-disabled {
+    background-color: #f5f5f5 !important;
+    color: #ccc !important;
+    cursor: not-allowed;
+}
+
+/* 選中日期樣式 */
+.p-datepicker-calendar td span.p-highlight {
+    background-color: #e86d00 !important;
+    color: white !important;
+}
+
+/* 今天的日期樣式 */
+.p-datepicker-calendar td span.p-today {
+    background-color: #fff3e0;
+    color: #e86d00;
+    font-weight: bold;
+}
+
+/* 時間段選擇提示樣式 */
+.time-slot-hint {
+    padding: 1rem;
+    background-color: #f8f9fa;
+    border-left: 4px solid #e86d00;
+    margin: 1rem 0;
+    border-radius: 0 4px 4px 0;
+}
+
+.time-slot-hint .pi {
+    color: #e86d00;
+    margin-right: 0.5rem;
+}
+
+/* 加載狀態樣式 */
+.loading-spinner {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    color: #e86d00;
+}
+
+.loading-spinner .pi-spin {
+    margin-right: 0.5rem;
 }
 
 /* 訂位人數日期排版 */
@@ -111,12 +238,6 @@
 .date-col {
     flex: 1 1 0;
     min-width: 250px;
-}
-
-.guest-select-group {
-    display: flex;
-    gap: 1rem;
-    margin-bottom: 0.5rem;
 }
 
 .guest-tip {
@@ -131,4 +252,19 @@
     margin-left: 0.25rem;
 }
 
+/* 日期提示樣式 */
+.date-hint {
+    margin-top: 0.5rem;
+    padding: 0.5rem;
+    background-color: #f8f9fa;
+    border-radius: 4px;
+    border-left: 3px solid #e86d00;
+}
+
+.date-hint .pi {
+    color: #e86d00;
+    margin-right: 0.25rem;
+}
+
+/* 時間選擇器 */
 /* 時間選擇器 */

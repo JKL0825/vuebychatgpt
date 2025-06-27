@@ -8,22 +8,12 @@
             <div class="restaurant-selection">
                 <h3>選擇餐廳</h3>
                 <div class="restaurant-cards">
-                    <router-link to="/restaurant/plants" class="restaurant-card">
-                        <div class="restaurant-icon">🌱</div>
-                        <h4>Plants</h4>
-                        <p>健康蔬食料理</p>
-                    </router-link>
-
-                    <router-link to="/restaurant/oceanView" class="restaurant-card">
-                        <div class="restaurant-icon">🌊</div>
-                        <h4>海景餐廳</h4>
-                        <p>海景與美食的完美結合</p>
-                    </router-link>
-
-                    <router-link to="/restaurant/italianCorner" class="restaurant-card">
-                        <div class="restaurant-icon">🍝</div>
-                        <h4>Italian Corner</h4>
-                        <p>道地義式料理</p>
+                    <router-link v-for="(restaurant, id) in restaurants" :key="id" :to="`/${id}`"
+                        class="restaurant-card">
+                        <div class="restaurant-icon">{{ getRestaurantIcon(id) }}</div>
+                        <h4>{{ restaurant.name }}</h4>
+                        <p>{{ getRestaurantDescription(id) }}</p>
+                        <div class="restaurant-hours">{{ restaurant.businessHours }}</div>
                     </router-link>
                 </div>
             </div>
@@ -50,6 +40,27 @@
 </template>
 
 <script setup>
+import { restaurants } from '@/data/restaurants.js'
+
+// 餐廳圖標映射 - 使用數字 ID
+const getRestaurantIcon = (id) => {
+    const iconMap = {
+        1: '🌱',  // Plants
+        2: '🌊',  // 海景餐廳
+        3: '🍝'   // Italian Corner
+    }
+    return iconMap[id] || '🍽️'
+}
+
+// 餐廳描述映射 - 使用數字 ID
+const getRestaurantDescription = (id) => {
+    const descriptionMap = {
+        1: '健康蔬食料理',
+        2: '海景與美食的完美結合',
+        3: '道地義式料理'
+    }
+    return descriptionMap[id] || '美味餐點'
+}
 </script>
 
 <!-- 樣式已移至 src/assets/css/home-content.css -->

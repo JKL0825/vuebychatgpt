@@ -1,10 +1,10 @@
 // 方法1: 直接導入圖片（推薦）
 import restaurantImg from '@/assets/images/restaurant.avif'
 
-// 餐廳資料庫
+// 餐廳資料庫 - 使用數字 ID 作為 key，與 timeslots_30d.json 的 restaurantId 對應
 export const restaurants = {
-    plants: {
-        id: 'plants',
+    1: {
+        id: 1,
         name: 'Plants',
         image: restaurantImg, // 使用導入的圖片
         address: '台北市大安區忠孝東路四段181巷40號',
@@ -24,8 +24,8 @@ export const restaurants = {
         copyrightText: '© 2021 Plants All Rights Reserved'
     },
 
-    oceanView: {
-        id: 'oceanView',
+    2: {
+        id: 2,
         name: '海景餐廳',
         image: restaurantImg, // 暫時使用同一張圖片
         address: '台北市信義區信義路五段7號',
@@ -45,8 +45,8 @@ export const restaurants = {
         copyrightText: '© 2021 海景餐廳 All Rights Reserved'
     },
 
-    italianCorner: {
-        id: 'italianCorner',
+    3: {
+        id: 3,
         name: 'Italian Corner',
         image: restaurantImg, // 暫時使用同一張圖片
         address: '台北市中山區南京東路二段123號',
@@ -69,5 +69,7 @@ export const restaurants = {
 
 // 根據 ID 獲取餐廳資料
 export const getRestaurantById = (id) => {
-    return restaurants[id] || restaurants.plants // 預設返回 Plants
+    // 確保 ID 是數字類型
+    const numericId = parseInt(id)
+    return restaurants[numericId] || restaurants[1] // 預設返回 Plants (ID: 1)
 }

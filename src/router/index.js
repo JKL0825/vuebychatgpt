@@ -28,6 +28,14 @@ const routes = [{
     meta: {
       title: '金晚 GoldenBowl | 餐廳詳情'
     }
+  },
+  {
+    path: '/:id',
+    name: 'restaurantById',
+    component: RestaurantView,
+    meta: {
+      title: '金晚 GoldenBowl | 餐廳詳情'
+    }
   }
 ]
 
