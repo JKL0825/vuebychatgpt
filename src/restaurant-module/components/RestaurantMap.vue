@@ -25,6 +25,8 @@ const mapUrl = computed(() => {
 <style scoped>
 .restaurant-map {
     margin: 2rem 0;
+    max-width: 800px;
+    margin: 2rem auto;
 }
 
 .map-title {

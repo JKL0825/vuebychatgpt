@@ -27,7 +27,8 @@ defineProps({
 
 <style scoped>
 .restaurant-info {
-    margin: 2rem 0;
+    max-width: 800px;
+    margin: 2rem auto;
     padding: 1.5rem;
     background: #f8f9fa;
     border-radius: 8px;

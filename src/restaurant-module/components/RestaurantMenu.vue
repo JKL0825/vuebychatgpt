@@ -1,26 +1,35 @@
 <template>
     <div class="restaurant-menu">
         <div class="menu-container">
-            <div class="menu-card">
-                <h3 class="menu-title">{{ restaurant.menuTitle || '餐廳菜單' }}</h3>
-                <div class="menu-tabs">
-                    <button v-for="(category, index) in restaurant.menuCategories" :key="index"
-                        :class="['menu-tab', { active: activeTab === index }]" @click="activeTab = index">
-                        {{ category.name }}
-                    </button>
+            <h3 class="menu-title">{{ restaurant.menuTitle || '餐廳菜單' }}</h3>
+
+            <div class="menu-tabs" v-if="restaurant.menuCategories && restaurant.menuCategories.length > 0">
+                <button v-for="(category, index) in restaurant.menuCategories" :key="index"
+                    :class="['menu-tab', { active: activeTab === index }]" @click="activeTab = index">
+                    {{ category.name }}
+                </button>
+            </div>
+
+            <div class="menu-content">
+                <div v-if="restaurant.menuCategories && restaurant.menuCategories.length > 0">
+                    <div class="menu-grid">
+                        <!-- 模擬菜品展示，實際項目中這裡會是真實的菜品數據 -->
+                        <div class="menu-item" v-for="item in 8" :key="item">
+                            <div class="item-image">
+                                <img :src="restaurant.image" :alt="`菜品 ${item}`" />
+                            </div>
+                            <div class="item-info">
+                                <h5 class="item-name">{{ restaurant.menuCategories[activeTab]?.name }} {{ item }}</h5>
+                                <p class="item-desc">美味的{{ restaurant.menuCategories[activeTab]?.name }}系列</p>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="menu-note">
+                        詳細菜單內容與價格請洽詢店家或電話預約時詢問
+                    </p>
                 </div>
-                <div class="menu-content">
-                    <div v-if="restaurant.menuCategories && restaurant.menuCategories.length > 0">
-                        <p class="menu-description">
-                            {{ restaurant.menuCategories[activeTab]?.name }} 系列
-                        </p>
-                        <p class="menu-note">
-                            詳細菜單內容請洽詢店家或電話預約時詢問
-                        </p>
-                    </div>
-                    <div v-else class="no-menu">
-                        <p>菜單資訊請洽詢店家</p>
-                    </div>
+                <div v-else class="no-menu">
+                    <p>菜單資訊請洽詢店家</p>
                 </div>
             </div>
         </div>
@@ -42,7 +51,8 @@ const activeTab = ref(0)
 
 <style scoped>
 .restaurant-menu {
-    margin: 2rem 0;
+    margin: 3rem 0;
+    padding: 0 1rem;
 }
 
 .menu-container {
@@ -50,90 +60,145 @@ const activeTab = ref(0)
     margin: 0 auto;
 }
 
-.menu-card {
-    background: #fff;
-    border-radius: 12px;
-    padding: 2rem;
-    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
-}
-
 .menu-title {
-    font-size: 1.5rem;
+    font-size: 2rem;
     font-weight: 600;
-    color: #ff6c00;
-    margin-bottom: 1.5rem;
+    color: #333;
+    margin-bottom: 2rem;
     text-align: center;
 }
 
 .menu-tabs {
     display: flex;
-    gap: 0.5rem;
-    margin-bottom: 1.5rem;
-    border-bottom: 1px solid #eee;
-    overflow-x: auto;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: 2rem;
+    flex-wrap: wrap;
 }
 
 .menu-tab {
     padding: 0.75rem 1.5rem;
-    border: none;
-    background: none;
-    color: #666;
+    border: 2px solid #ff6c00;
+    background: #fff;
+    color: #ff6c00;
     font-weight: 500;
     cursor: pointer;
-    border-bottom: 2px solid transparent;
+    border-radius: 25px;
     transition: all 0.3s ease;
     white-space: nowrap;
 }
 
 .menu-tab:hover {
-    color: #ff6c00;
+    background: #ff6c00;
+    color: #fff;
 }
 
 .menu-tab.active {
-    color: #ff6c00;
-    border-bottom-color: #ff6c00;
+    background: #ff6c00;
+    color: #fff;
 }
 
 .menu-content {
     padding: 1rem 0;
 }
 
-.menu-description {
-    font-size: 1.1rem;
+.menu-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.menu-item {
+    background: #fff;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.menu-item:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+}
+
+.item-image {
+    width: 100%;
+    height: 140px;
+    overflow: hidden;
+}
+
+.item-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.item-info {
+    padding: 1rem;
+}
+
+.item-name {
+    font-size: 1rem;
+    font-weight: 600;
     color: #333;
-    margin-bottom: 1rem;
+    margin: 0 0 0.5rem 0;
+}
+
+.item-desc {
+    font-size: 0.9rem;
+    color: #666;
+    margin: 0;
+    line-height: 1.4;
 }
 
 .menu-note {
+    text-align: center;
     color: #666;
     font-size: 0.9rem;
     line-height: 1.5;
+    font-style: italic;
 }
 
 .no-menu {
     text-align: center;
     color: #666;
-    padding: 2rem 0;
+    padding: 3rem 0;
+    font-size: 1.1rem;
 }
 
 /* 響應式設計 */
 @media (max-width: 768px) {
-    .menu-card {
-        padding: 1.5rem;
-        margin: 0 1rem;
+    .menu-grid {
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+        gap: 1rem;
     }
 
     .menu-title {
-        font-size: 1.25rem;
+        font-size: 1.75rem;
     }
 
     .menu-tabs {
-        padding-bottom: 0.5rem;
+        gap: 0.5rem;
     }
 
     .menu-tab {
         padding: 0.5rem 1rem;
         font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .menu-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .item-image {
+        height: 120px;
+    }
+
+    .item-info {
+        padding: 0.75rem;
     }
 }
 </style>

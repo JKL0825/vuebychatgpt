@@ -138,6 +138,16 @@ export async function checkTimeSlotAvailability(restaurantId, date, timeSlot) {
     }
 }
 
+// 創建 default export 包含所有服務函數
+const timeSlotService = {
+    fetchRestaurantTimeSlots,
+    fetchBookedTimeSlots,
+    submitReservation,
+    checkTimeSlotAvailability
+}
+
+export default timeSlotService
+
 
 
 

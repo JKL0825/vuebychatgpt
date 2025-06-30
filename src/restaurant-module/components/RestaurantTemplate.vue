@@ -3,10 +3,14 @@
         <!-- 餐廳橫幅 -->
         <RestaurantBanner :restaurant="restaurant" />
 
+        <!-- 餐廳名稱區域 -->
+        <div class="restaurant-header">
+            <h1 class="restaurant-main-title">{{ restaurant.name }}</h1>
+        </div>
+
         <!-- 預約按鈕 -->
         <div class="text-center my-4">
-            <p>立即預約享受美食</p>
-            <!-- 使用事件冒泡或 $emit 來處理滾動 -->
+            <p class="reserve-text">立即預約享受美食</p>
             <button class="btn btn-warning text-white" @click="scrollToReservation">
                 🍽️ 立即預約
             </button>
@@ -59,7 +63,22 @@ const scrollToReservation = () => {
 .restaurant-container {
     max-width: 1200px;
     margin: 0 auto;
-    padding: 20px;
+    padding: 0;
+    background: #fff;
+}
+
+.restaurant-header {
+    text-align: center;
+    padding: 2rem 1rem;
+    background: #fff;
+}
+
+.restaurant-main-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #333;
+    margin: 0;
+    letter-spacing: 1px;
 }
 
 .text-center {
@@ -67,14 +86,21 @@ const scrollToReservation = () => {
 }
 
 .my-4 {
-    margin: 1.5rem 0;
+    margin: 2rem 0;
+    padding: 0 1rem;
+}
+
+.reserve-text {
+    font-size: 1.1rem;
+    color: #666;
+    margin-bottom: 1.5rem;
 }
 
 .btn {
     display: inline-block;
-    padding: 12px 24px;
+    padding: 12px 32px;
     border: none;
-    border-radius: 8px;
+    border-radius: 25px;
     text-decoration: none;
     font-weight: 600;
     cursor: pointer;
@@ -85,12 +111,13 @@ const scrollToReservation = () => {
 .btn-warning {
     background-color: #ff6c00;
     color: white;
+    box-shadow: 0 4px 15px rgba(255, 108, 0, 0.3);
 }
 
 .btn-warning:hover {
     background-color: #e55a00;
     transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(255, 108, 0, 0.3);
+    box-shadow: 0 6px 20px rgba(255, 108, 0, 0.4);
 }
 
 .text-white {
@@ -99,6 +126,28 @@ const scrollToReservation = () => {
 
 #reservation-section {
     scroll-margin-top: 80px;
-    /* 為了smooth scroll留空間 */
+    background: #f8f9fa;
+    padding: 3rem 0;
+}
+
+/* 響應式設計 */
+@media (max-width: 768px) {
+    .restaurant-main-title {
+        font-size: 2rem;
+    }
+
+    .restaurant-header {
+        padding: 1.5rem 1rem;
+    }
+
+    .my-4 {
+        margin: 1.5rem 0;
+    }
+}
+
+@media (max-width: 480px) {
+    .restaurant-main-title {
+        font-size: 1.75rem;
+    }
 }
 </style>
