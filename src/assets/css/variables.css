@@ -1,0 +1,134 @@
+/* CSS 變數 - 統一設計系統 */
+:root {
+    /* 顏色系統 */
+    --primary-color: #ff6c00;
+    --primary-light: #fff3e0;
+    --primary-dark: #e55a00;
+
+    --secondary-color: #f8f9fa;
+    --secondary-dark: #e9ecef;
+
+    --text-primary: #111111;
+    --text-secondary: #666666;
+    --text-muted: #999999;
+
+    --border-color: #eee;
+    --border-light: #f0f0f0;
+
+    --success-color: #28a745;
+    --warning-color: #ffc107;
+    --error-color: #dc3545;
+    --info-color: #17a2b8;
+
+    --white: #ffffff;
+    --black: #000000;
+
+    /* 字體系統 */
+    --font-family-primary: "Montserrat", sans-serif;
+    --font-family-heading: "Playfair Display", serif;
+
+    --font-size-xs: 12px;
+    --font-size-sm: 14px;
+    --font-size-base: 16px;
+    --font-size-lg: 18px;
+    --font-size-xl: 20px;
+    --font-size-2xl: 24px;
+    --font-size-3xl: 30px;
+    --font-size-4xl: 36px;
+
+    --font-weight-normal: 400;
+    --font-weight-medium: 500;
+    --font-weight-semibold: 600;
+    --font-weight-bold: 700;
+
+    --line-height-tight: 1.25;
+    --line-height-normal: 1.5;
+    --line-height-relaxed: 1.75;
+
+    /* 間距系統 */
+    --spacing-xs: 4px;
+    --spacing-sm: 8px;
+    --spacing-md: 16px;
+    --spacing-lg: 24px;
+    --spacing-xl: 32px;
+    --spacing-2xl: 48px;
+    --spacing-3xl: 64px;
+
+    /* 圓角系統 */
+    --border-radius-sm: 4px;
+    --border-radius-md: 8px;
+    --border-radius-lg: 12px;
+    --border-radius-xl: 16px;
+    --border-radius-full: 9999px;
+
+    /* 陰影系統 */
+    --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+    --shadow-md: 0 2px 8px rgba(0, 0, 0, 0.03);
+    --shadow-lg: 0 4px 12px rgba(0, 0, 0, 0.1);
+    --shadow-xl: 0 8px 24px rgba(0, 0, 0, 0.15);
+
+    /* Z-index 層級 */
+    --z-dropdown: 1000;
+    --z-modal: 1050;
+    --z-popover: 1060;
+    --z-tooltip: 1070;
+    --z-navbar: 1030;
+
+    /* 動畫時間 */
+    --transition-fast: 0.15s;
+    --transition-normal: 0.3s;
+    --transition-slow: 0.5s;
+
+    /* 動畫曲線 */
+    --ease-out: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    --ease-in: cubic-bezier(0.55, 0.055, 0.675, 0.19);
+    --ease-in-out: cubic-bezier(0.645, 0.045, 0.355, 1);
+
+    /* 容器寬度 */
+    --container-sm: 576px;
+    --container-md: 768px;
+    --container-lg: 992px;
+    --container-xl: 1200px;
+    --container-2xl: 1400px;
+
+    /* 表單控件 */
+    --input-height: 44px;
+    --input-padding-x: var(--spacing-md);
+    --input-padding-y: var(--spacing-sm);
+    --input-border-width: 1px;
+    --input-border-radius: var(--border-radius-md);
+
+    /* 按鈕 */
+    --button-height: 44px;
+    --button-padding-x: var(--spacing-xl);
+    --button-padding-y: var(--spacing-sm);
+    --button-border-radius: var(--border-radius-md);
+}
+
+/* 深色模式支援 */
+@media (prefers-color-scheme: dark) {
+    :root {
+        --text-primary: #ffffff;
+        --text-secondary: #cccccc;
+        --text-muted: #999999;
+        --border-color: #333333;
+        --border-light: #444444;
+        --white: #1a1a1a;
+        --black: #ffffff;
+    }
+}
+
+/* 工具類別 */
+.vue-restaurant-container {
+    max-width: var(--container-xl);
+    margin: 0 auto;
+    padding: 0 var(--spacing-md);
+}
+
+.vue-restaurant-shadow {
+    box-shadow: var(--shadow-md);
+}
+
+.vue-restaurant-transition {
+    transition: all var(--transition-normal) var(--ease-out);
+}

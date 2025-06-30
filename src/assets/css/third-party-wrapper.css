@@ -1,0 +1,39 @@
+/* 第三方 CSS 隔離包裝器 */
+/* 將所有第三方樣式限制在特定的作用域內 */
+
+.vue-restaurant-third-party {
+    /* 將原始的 style.css 樣式包裝在這個類別下 */
+    /* 這樣就不會影響到其他專案的樣式 */
+}
+
+/* 如果需要使用第三方樣式，請在組件中添加 vue-restaurant-third-party 類別 */
+/* 例如：<div class="vue-restaurant-third-party"> ... </div> */
+
+/* 
+使用說明：
+1. 將 style.css 的內容複製到這裡，並添加 .vue-restaurant-third-party 前綴
+2. 或者使用 PostCSS 插件自動添加前綴
+3. 在需要使用第三方樣式的組件中添加包裝類別
+
+範例：
+.vue-restaurant-third-party .primary-btn {
+  display: inline-block;
+  font-size: 14px;
+  font-weight: 600;
+  text-transform: uppercase;
+  padding: 14px 30px;
+  color: #ffffff;
+  background: #f08632;
+  letter-spacing: 2px;
+}
+*/
+
+/* 重置可能造成衝突的全域樣式 */
+.vue-restaurant-third-party * {
+    box-sizing: border-box;
+}
+
+.vue-restaurant-third-party {
+    /* 確保內部樣式不會外洩 */
+    contain: layout style paint;
+}

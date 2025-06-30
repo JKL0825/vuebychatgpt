@@ -6,7 +6,10 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "css:prefix": "postcss src/assets/css/style.css --use postcss-prefixwrap --postcss-prefixwrap.prefix='.vue-restaurant-third-party' -o src/assets/css/style-prefixed.css",
+    "css:analyze": "echo '分析CSS檔案大小和複雜度' && du -h src/assets/css/*.css",
+    "css:lint": "echo '建議安裝 stylelint 來檢查CSS品質'"
   },
   "dependencies": {
     "@primeuix/themes": "^1.1.2",
@@ -24,6 +27,9 @@
   "devDependencies": {
     "@vitejs/plugin-vue": "^5.2.3",
     "vite": "^6.3.5",
-    "vite-plugin-vue-devtools": "^7.7.2"
+    "vite-plugin-vue-devtools": "^7.7.2",
+    "postcss": "^8.4.38",
+    "postcss-cli": "^11.0.0",
+    "postcss-prefixwrap": "^1.30.0"
   }
 }

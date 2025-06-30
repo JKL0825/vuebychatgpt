@@ -12,7 +12,7 @@
                     <div class="col date-col">
                         <label>用餐日期</label>
                         <DatePicker v-model="date" placeholder="請選擇" dateFormat="yy/mm/dd" :minDate="minDate"
-                            :selectableDate="isDateSelectable" />
+                            :maxDate="maxDate" :selectableDate="isDateSelectable" />
                     </div>
                 </div>
                 <div class="date-hint">
@@ -21,6 +21,9 @@
                         僅顯示有時間段的可預約日期・可接受1-6位訂位（含大人與小孩）・超過6人請電話預約
                         <a href="tel:0227845677" class="main-color">02-2784-5677</a>
                     </small>
+                    <div class="mt-1" style="font-size: 11px; color: #888;">
+                        Debug: 總時間段: {{ timeSlots.length }}, 可選日期: {{ availableDates.size }}
+                    </div>
                 </div>
             </div>
         </div>
@@ -35,9 +38,19 @@
             </div>
             <div v-else-if="timeSections.length === 0" class="text-muted py-3">
                 <i class="pi pi-info-circle"></i> 當日暫無可用時間段
+                <div class="mt-2" style="font-size: 12px; color: #666;">
+                    Debug: 選中日期: {{ date ? formatDateToString(date) : '未選擇' }},
+                    原始時間段: {{ todayTimeSlots.length }},
+                    分組時間段: {{ timeSections.length }}
+                </div>
             </div>
-            <TimePickerSectioned v-else v-model="selectedTime" :sections="timeSections"
-                :disabledSlots="disabledTimeSlots" />
+            <div v-else>
+                <div class="mb-2" style="font-size: 12px; color: #666;">
+                    Debug: 找到 {{ timeSections.length }} 個時間段分組, 總共 {{ todayTimeSlots.length }} 個時間段
+                </div>
+                <TimePickerSectioned v-model="selectedTime" :sections="timeSections"
+                    :disabledSlots="disabledTimeSlots" />
+            </div>
         </div>
         <h4 class="text-orange mb-3">預約訂位</h4>
         <!-- 姓名 -->
@@ -69,8 +82,6 @@ import InputText from 'primevue/inputtext'
 import Button from 'primevue/button'
 import DatePicker from 'primevue/datepicker'
 import Select from 'primevue/select'
-import '@/assets/css/style.css'
-import '@/assets/css/reservationform.css'
 import TimePickerSectioned from '@/components/TimePickerSectioned.vue'
 import {
     getTimeSlotsForDate,
@@ -94,6 +105,8 @@ const note = ref('')
 const formRef = ref(null)
 const selectedTime = ref('')
 const minDate = new Date()
+const maxDate = new Date()
+maxDate.setMonth(maxDate.getMonth() + 6) // 最多可預約6個月後
 
 
 const selectedGuest = ref();
@@ -173,13 +186,14 @@ const availableDates = computed(() => {
     if (timeSlots.value.length === 0) return new Set()
 
     const today = new Date()
+    today.setHours(0, 0, 0, 0) // 設置為當天開始時間
 
     // 包含今天以後所有有時間段的日期，不限制月份
     return new Set(
         timeSlots.value
             .map(slot => slot.date)
             .filter(dateStr => {
-                const slotDate = new Date(dateStr)
+                const slotDate = new Date(dateStr + 'T00:00:00') // 確保使用本地時間
                 return slotDate >= today
             })
     )
@@ -199,11 +213,13 @@ const isDateSelectable = (date) => {
 
 // 根據選中的日期獲取當天的時間段
 const todayTimeSlots = computed(() => {
+    if (!date.value || timeSlots.value.length === 0) return []
     return getTimeSlotsForDate(timeSlots.value, date.value)
 })
 
 // 將時間段按時間分組（午餐、下午、晚餐等）
 const timeSections = computed(() => {
+    if (!date.value || timeSlots.value.length === 0) return []
     return groupTimeSlotsByPeriod(todayTimeSlots.value)
 })
 
@@ -265,13 +281,103 @@ const submit = () => {
 }
 </script>
 
-<style src="@/assets/css/reservationform.css"></style>
-<!-- src/
-├── App.vue                     ← 主要容器 + 導覽列
-├── main.js                     ← 套件註冊 & 啟動點
-├── router/
-│   └── index.js                ← Vue Router 設定
-├── views/
-│   └── RestaurantView.vue      ← 店家畫面 + 包含 <ReservationForm />
-├── components/
-│   └── ReservationForm.vue     ← 抽出訂位表單元件 -->
+<style scoped>
+.reservation-form-container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.guest-date-section {
+    margin-bottom: 2rem;
+}
+
+.guest-selection {
+    background: #f8f9fa;
+    padding: 1.5rem;
+    border-radius: 8px;
+    margin-bottom: 1rem;
+}
+
+.form-label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+    color: #333;
+}
+
+.select-group {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.guest-select,
+.child-select {
+    flex: 1;
+}
+
+.date-section {
+    margin-bottom: 2rem;
+}
+
+.date-picker {
+    width: 100%;
+    margin-bottom: 1rem;
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.form-input {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 1rem;
+}
+
+.form-input:focus {
+    outline: none;
+    border-color: #ff6c00;
+    box-shadow: 0 0 0 2px rgba(255, 108, 0, 0.2);
+}
+
+.submit-btn {
+    background: linear-gradient(135deg, #ff6c00, #e55a00);
+    color: white;
+    border: none;
+    padding: 1rem 2rem;
+    border-radius: 6px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    width: 100%;
+}
+
+.submit-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(255, 108, 0, 0.4);
+}
+
+.submit-btn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none;
+}
+
+/* 響應式設計 */
+@media (max-width: 768px) {
+    .select-group {
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .guest-select,
+    .child-select {
+        flex: none;
+    }
+}
+</style>

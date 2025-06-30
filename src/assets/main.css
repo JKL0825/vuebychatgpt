@@ -1,15 +1,12 @@
+/* CSS 變數系統 - 必須最先導入 */
+@import './css/variables.css';
+/* 佈局重置 - 確保頁面從視窗頂部開始 */
+@import './css/layout-reset.css';
 @import './base.css';
 
-/* 組件樣式 */
-@import './css/navigationbar.css';
-@import './css/home-content.css';
-@import './css/home-view.css';
+/* 組件樣式 - 已移除全域CSS，改用scoped CSS */
 @import './css/restaurant-view.css';
-@import './css/reservationform.css';
 @import './css/theme-overrides.css';
-
-/* 除錯樣式（開發時使用） */
-@import './css/debug.css';
 
 #app {
   max-width: 1280px;
@@ -17,6 +14,8 @@
   padding: 0;
   font-weight: normal;
   padding-bottom: 122px;
+  /* 確保從瀏覽器視窗最上方開始 */
+  min-height: 100vh;
 }
 
 a,
@@ -35,8 +34,9 @@ a,
 
 @media (min-width: 1024px) {
   body {
-    display: flex;
-    place-items: center;
+    /* 移除flex佈局，避免頁面內容超出視窗 */
+    margin: 0;
+    padding: 0;
   }
 
   #app {
@@ -45,5 +45,7 @@ a,
     padding: 0;
     font-weight: normal;
     padding-bottom: 122px;
+    /* 確保從頁面頂部開始 */
+    min-height: 100vh;
   }
 }

@@ -1,14 +1,17 @@
 <template>
     <div class="restaurant-view-wrapper">
-        <RestaurantTemplate :restaurant="restaurantData" />
+        <RestaurantTemplate :restaurant="restaurantData" v-if="restaurantData.id" />
+        <div v-else class="loading-state">
+            <p>載入餐廳資料中...</p>
+        </div>
     </div>
 </template>
 
 <script setup>
 import { ref, onMounted } from 'vue'
 import { useRoute } from 'vue-router'
-import RestaurantTemplate from '../components/RestaurantTemplate.vue'
-import { getRestaurantById } from '../data/restaurants.js'
+import RestaurantTemplate from '../restaurant-module/components/RestaurantTemplate.vue'
+import { getRestaurantById } from '../restaurant-module/data/restaurants.js'
 
 const route = useRoute()
 const restaurantData = ref({})
@@ -19,5 +22,21 @@ onMounted(() => {
     restaurantData.value = getRestaurantById(restaurantId)
 })
 </script>
+
+<style scoped>
+.restaurant-view-wrapper {
+    min-height: 100vh;
+    background: #fff;
+}
+
+.loading-state {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 50vh;
+    color: #666;
+    font-size: 1.1rem;
+}
+</style>
 
 <!-- 樣式已移至 src/assets/css/restaurant-view.css -->

@@ -1,0 +1,77 @@
+/* 佈局重置 - 確保頁面從瀏覽器視窗頂部開始 */
+
+html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    /* 防止水平滾動條 */
+    overflow-x: hidden;
+}
+
+body {
+    margin: 0 !important;
+    padding: 0 !important;
+    /* 確保從頂部開始，不要有任何偏移 */
+    position: relative;
+    top: 0;
+    left: 0;
+    /* 重置可能影響佈局的屬性 */
+    transform: none;
+    /* 確保body佔滿整個視窗 */
+    min-height: 100vh;
+    width: 100%;
+}
+
+/* 重置可能影響佈局的全域樣式 */
+* {
+    /* 確保所有元素都不會有意外的margin或padding */
+    margin: 0;
+    padding: 0;
+}
+
+/* 確保主容器從頂部開始 */
+#app {
+    position: relative;
+    top: 0;
+    left: 0;
+    /* 確保沒有意外的邊距 */
+    margin-top: 0 !important;
+    padding-top: 0 !important;
+    /* 確保佔滿整個視窗寬度 */
+    width: 100%;
+    max-width: 1280px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* 主要內容區域 */
+.home-view {
+    margin: 0;
+    padding: 0;
+    /* 確保從頂部開始 */
+    position: relative;
+    top: 0;
+}
+
+.content-area {
+    margin: 0;
+    padding: 0;
+    /* 確保內容從頂部開始顯示 */
+    padding-top: 0 !important;
+    margin-top: 0 !important;
+}
+
+/* 響應式調整 */
+@media (max-width: 768px) {
+    body {
+        /* 移動端也要確保從頂部開始 */
+        margin: 0 !important;
+        padding: 0 !important;
+    }
+
+    #app {
+        margin: 0;
+        padding: 0 10px;
+        /* 只在左右添加少量padding */
+    }
+}
